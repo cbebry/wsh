@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>wish</title>
+	<style type='text/css'>
+	 #consoleIn{
+		border: 1px solid transparent;
+		background-color: #222;
+		color: white;
+		font-family: Lucida Console;
+	 }
+	 
+	 #consoleIn:focus{
+		border-color: #E8AB1C;
+	 }
+	 
+	 .dataIn{
+		color:#36FF89;
+		width:inherit;
+	 }
+
+	 .pointToResponse{
+		color: #ECFC53;
+	 }
+	 
+	 #console{
+		 overflow-y: auto; 
+		 float:left;
+		 height:600px;
+		background-color: black;
+		color: white;
+		font-family: Lucida Console;
+		text-decoration: bold;
+		font-size: 14px;
+		white-space:normal;
+		word-wrap: break-word;
+		width:550px;
+		max-width:550px;
+		margin-left:-100px;
+	 }
+	 body {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		font-size: 100%;
+		font: inherit;
+		vertical-align: baseline;
+		background-color: #CCC;
+	}
+	.pageContainer {
+		margin: 20px auto;
+		padding: 0;
+		width: 1600px;
+		height:100%;
+		min-height:1200px;
+		margin-bottom: 20px;
+		-webkit-box-shadow: 0px 1px 1px 3px #222; 
+		box-shadow: 0px 1px 1px 3px #222; 
+	}
+	.bodyContainer {
+		width: 100%;
+		height: 100%;
+		min-height: 1100px;
+		background-color: #797779;
+		//overflow-y: auto;
+	}
+	a {
+		color: black;
+		text-decoration: none;
+	}
+	.outputContainer {
+		color:white;
+		font-family: arial;
+		position:relative;
+		margin: 0 auto;
+		top:200px;
+		width:330px;
+	}
+	#title {
+		width:200px;
+		height: 40px;
+		font-size:20px;
+		font-weight: bold;
+		line-height:40px;
+		margin:0 auto;
+		background-color: #CCC;
+		color: #010001;
+		text-align:center;
+		position:relative;
+		top: -100px;
+		margin-left:63px;
+		display: inline-block;
+		font-family: Calibri;
+	}
+	 </style>
+	 
+	<script type="text/javascript" src="http://difractal.com/numslide/jquery.js"></script> 
+	<script type="text/javascript" src="console.js"></script> 
+	<script type = "text/javascript">
+	var cons;
+	$(document).ready(function() {
+		cons = new Console("#console","#consoleIn");
+		cons.Application = new MathApplication(cons);
+		$("#console").dblclick(function() {
+			cons.Focus();
+		});
+	});
+	var MathApplication = function(cons) {
+		var statements = [];
+		statements[1] = "Please choose one of the following four operations: <br> * / + - ";
+		statements[2] = "Okay, what is the first number?";
+		statements[3] = "And, what is the second number?";
+		statements[4] = "Your result is: ";
+		statements[5] = "Continue?";
+
+		var errors = [];
+		errors[1] = "Invalid input<br><br>" + statements[1];
+		errors[2] = "Invalid input<br><br>" + statements[2];
+		errors[3] = "Invalid input<br><br>" + statements[3];
+
+		var n = 1;
+
+		var num1 = 0;
+		var num2 = 0;
+		var operation;
+		cons.WriteLine("Let's do some math! <br><br>" + statements[1]);
+		$(document).keydown(function(e){
+			if (e.which == 13) {
+				var cin = cons.ReadLine();
+				if (n == 1) {
+					if (cin == "*" || cin == "-" || cin == "/" || cin == "+") {
+					   operation = cin;
+						n = 2;
+						cons.WriteLine(statements[n]);
+					} else {
+						cons.WriteLine(errors[n]);
+					}
+				} else if (n == 2) {
+					if(cin == parseFloat(cin)) {
+						num1 = cin;
+						n = 3;
+						cons.WriteLine(statements[n]);
+					} else {
+						cons.WriteLine(errors[n]);
+					}
+				} else if(n==3) {
+					if (cin == parseFloat(cin)) {
+						num2 = cin;
+						n = 4;
+						var result;
+						if (operation == "*") {
+							result = num1 * num2;
+						} else if(operation == "/") {
+							result = num1 / num2;
+						} else if(operation == "+") {
+							result = parseFloat(num1) + parseFloat(num2);
+						} else if(operation == "-") {
+							result = num1 - num2;
+						}
+						cons.WriteLine(statements[n] + num1 + operation + num2 + "=" + result);
+						n = 5;
+						cons.WriteLine(statements[n]);				
+					} else {
+						cons.WriteLine(errors[n]);
+					}				
+				} else if(n==5) {
+				   cin = cin.toLowerCase();
+					if (cin == "y" || cin == "yes") {
+						operation = "";
+						num1 = 0;
+						num2 = 0;
+						n = 1;
+						cons.WriteLine(statements[n]);
+					} else {
+						cons.WriteLine("Will not resume until 'yes' or 'y' entered");
+					}
+				}
+				cons.Focus();
+			}
+		});
+	}
+	  
+	function OnConsole(evt) {
+		var e = evt.originalEvent;
+		if(typeof e.offsetX === "undefined" || typeof e.offsetY === "undefined") {
+			var targetOffset = $(e.target).offset();
+			e.offsetX = e.pageX - targetOffset.left;
+			e.offsetY = e.pageY - targetOffset.top;
+		}
+			var consoleOffset = $("#console").offset();
+			var consoleW = $("#console").css('width');
+			var consoleH = $("#console").css('height');
+			if(e.offsetX >= consoleOffset.left && e.offsetX <= consoleOffset.left + consoleW) {
+				if(e.offsetY >= consoleOffset.top && e.offsetY <= consoleOffset.top + consoleH) {
+					return true;
+				}			
+			}
+			return false;
+	}
+	</script>
+	
+</head>
+<body>
+<div class='pageContainer'>
+	<div class='outputContainer'>
+		<div id='title'>wsh terminal</div>
+		<div id='console'>
+			wsh terminal
+			<input id='consoleIn' type='text' autofocus />
+		</div>
+	</div>
+</div>
+</body>
+</html>	
