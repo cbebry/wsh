@@ -2,96 +2,7 @@
 <html>
 <head>
 	<title>wish</title>
-	<style type='text/css'>
-	 #consoleIn{
-		border: 1px solid transparent;
-		background-color: #222;
-		color: white;
-		font-family: Lucida Console;
-	 }
-	 
-	 #consoleIn:focus{
-		border-color: #E8AB1C;
-	 }
-	 
-	 .dataIn{
-		color:#36FF89;
-		width:inherit;
-	 }
-
-	 .pointToResponse{
-		color: #ECFC53;
-	 }
-	 
-	#console{
-		overflow-y: auto; 
-		float:left;
-		height:600px;
-		background-color: black;
-		color: white;
-		font-family: Lucida Console;
-		text-decoration: bold;
-		font-size: 14px;
-		white-space:normal;
-		word-wrap: break-word;
-		width:800px;
-		/*max-width:800px;*/
-		margin-left:-100px;
-	}
-	 body {
-		margin: 0;
-		padding: 0;
-		border: 0;
-		font-size: 100%;
-		font: inherit;
-		vertical-align: baseline;
-		background-color: #CCC;
-	}
-	.pageContainer {
-		margin: 20px auto;
-		padding: 0;
-		width: 1600px;
-		height:100%;
-		min-height:1200px;
-		margin-bottom: 20px;
-		-webkit-box-shadow: 0px 1px 1px 3px #222; 
-		box-shadow: 0px 1px 1px 3px #222; 
-	}
-	.bodyContainer {
-		width: 100%;
-		height: 100%;
-		min-height: 1100px;
-		background-color: #797779;
-	}
-	a {
-		color: black;
-		text-decoration: none;
-	}
-	.outputContainer {
-		color:white;
-		font-family: arial;
-		position:relative;
-		margin: 0 auto;
-		top:200px;
-		width:330px;
-	}
-	#title {
-		width:200px;
-		height: 40px;
-		font-size:20px;
-		font-weight: bold;
-		line-height:40px;
-		margin:0 auto;
-		background-color: #CCC;
-		color: #010001;
-		text-align:center;
-		position:relative;
-		top: -100px;
-		margin-left:63px;
-		display: inline-block;
-		font-family: Calibri;
-	}
-	 </style>
+	<link href="style.css" media="all" rel="stylesheet" type="text/css" />
 	 
 	<script type="text/javascript" src="jquery-1.9.1.min.js"></script> 
 	<script type="text/javascript" src="console.js"></script>
@@ -203,15 +114,10 @@
 	
 </head>
 <body>
-<div class='pageContainer'>
-	<div class='outputContainer'>
-		<div id='title'>wsh terminal</div>
-		<div id='console'>
-			wsh terminal
-			<input id='consoleIn' type='text' autofocus />
-		</div>
+	<div id='console'>
+		wsh terminal
+		<input id='consoleIn' type='text' autofocus />
 	</div>
-</div>
 <script type="text/javascript">
 	Resizeable('#console');
 </script>

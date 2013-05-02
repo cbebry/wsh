@@ -1,0 +1,28 @@
+#consoleIn{
+	border: 1px solid transparent;
+	background-color: #222;
+	color: white;
+	font-family: Lucida Console;
+}
+#consoleIn:focus{
+	border-color: #E8AB1C;
+}
+.dataIn{
+	color:#36FF89;
+	width:inherit;
+}
+.pointToResponse{
+	color: #ECFC53;
+}
+#console{
+	overflow-y: auto;
+	width:800px;
+	height:600px;
+	background-color: black;
+	color: white;
+	font-family: Lucida Console;
+	font-size: 14px;
+	white-space:normal;
+	word-wrap: break-word;
+	margin:100px auto;
+}
