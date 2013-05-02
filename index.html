@@ -23,10 +23,10 @@
 		color: #ECFC53;
 	 }
 	 
-	 #console{
-		 overflow-y: auto; 
-		 float:left;
-		 height:600px;
+	#console{
+		overflow-y: auto; 
+		float:left;
+		height:600px;
 		background-color: black;
 		color: white;
 		font-family: Lucida Console;
@@ -34,10 +34,10 @@
 		font-size: 14px;
 		white-space:normal;
 		word-wrap: break-word;
-		width:550px;
-		max-width:550px;
+		width:800px;
+		/*max-width:800px;*/
 		margin-left:-100px;
-	 }
+	}
 	 body {
 		margin: 0;
 		padding: 0;
@@ -62,7 +62,6 @@
 		height: 100%;
 		min-height: 1100px;
 		background-color: #797779;
-		//overflow-y: auto;
 	}
 	a {
 		color: black;
@@ -95,7 +94,8 @@
 	 </style>
 	 
 	<script type="text/javascript" src="jquery-1.9.1.min.js"></script> 
-	<script type="text/javascript" src="console.js"></script> 
+	<script type="text/javascript" src="console.js"></script>
+	<script type="text/javascript" src="divstretch.js"></script>
 	<script type="text/javascript">
 	var cons;
 	$(document).ready(function() {
@@ -179,7 +179,7 @@
 			}
 		});
 	}
-	  
+	 /* 
 	function OnConsole(evt) {
 		var e = evt.originalEvent;
 		if(typeof e.offsetX === "undefined" || typeof e.offsetY === "undefined") {
@@ -197,6 +197,8 @@
 			}
 			return false;
 	}
+	*/
+	//
 	</script>
 	
 </head>
@@ -210,5 +212,8 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+	Resizeable('#console');
+</script>
 </body>
-</html>	
+</html>
